@@ -10,20 +10,18 @@ pipeline {
         string(name: 'ENVIRONMENT', defaultValue: 'int', description: 'int is only option now.')
     }
     stages {
+        stage ('Initialize') {
+                steps {
+                    sh '''
+                        echo "PATH = ${PATH}"
+                        echo "M2_HOME = ${M2_HOME}"
+                    '''
+                }
+            }
         stage('build') {
             steps {
               echo 'building the application'
-            }
-        }
-
-        stage('test') {
-            steps {
-                echo 'testing the application'
-                 rtMavenRun(
-                    tool: 'Maven',
-                    pom: "pom.xml",
-                    goals: "test -Dtest=JenkinsDeployableApplicationTests"
-                )
+              sh '-Dtest=JenkinsDeployableApplicationTests'
             }
         }
 
