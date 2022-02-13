@@ -21,7 +21,14 @@ pipeline {
         stage('build') {
             steps {
               echo 'building the application'
-              sh '-Dtest=JenkinsDeployableApplicationTests'
+              sh 'mvn clean package'
+            }
+        }
+
+         stage('test') {
+            steps {
+              echo 'building the application'
+              sh 'mvn -Dtest=JenkinsDeployableApplicationTests test'
             }
         }
 
