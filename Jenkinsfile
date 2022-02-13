@@ -2,7 +2,6 @@ pipeline {
     agent any
     tools {
         maven 'Maven'
-        jdk 'Java11'
     }
     parameters {
         // If a parameter name case-insensitively matches an environment variable, the environment variable during the karate test will be null.
