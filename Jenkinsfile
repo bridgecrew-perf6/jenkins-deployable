@@ -20,6 +20,11 @@ pipeline {
         stage('test') {
             steps {
                 echo 'testing the application'
+                 rtMavenRun(
+                    tool: 'Maven',
+                    pom: "pom.xml",
+                    goals: "test -Dtest=JenkinsDeployableApplicationTests"
+                )
             }
         }
 
